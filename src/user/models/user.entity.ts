@@ -1,4 +1,6 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { Producto } from "src/producto/models/producto.entity"
+
 @Entity()
 export class User{
     @PrimaryGeneratedColumn()
@@ -16,7 +18,7 @@ export class User{
     @Column({unique:true})
     email: string
 
-
-  
+    @OneToMany(() => Producto, producto => producto.user)
+    producto: Producto[];
 
 }
